@@ -1,5 +1,6 @@
 package com.loveable.billingService.service.impl;
 
+import com.loveable.billingService.dto.BillingResponse;
 import com.loveable.billingService.entity.Billing;
 import com.loveable.billingService.enums.Status;
 import com.loveable.billingService.repository.BillingRepository;
@@ -15,17 +16,24 @@ import java.time.LocalDate;
 public class BillingServiceImpl implements BillingService {
 
     private final BillingRepository billingRepository;
+
     @Override
-    public String fundWallet(Long id, BigDecimal amount) {
+    public BillingResponse fundWallet(Long customerId, BigDecimal amount) {
         Billing billing = Billing.builder()
                 .amount(amount)
                 .createdAt(LocalDate.now())
                 .status(Status.PENDING)
                 .modifiedAt(null)
-                .customerId(id)
+                .customerId(customerId)
                 .build();
 
-        billingRepository.save(billing);
-        return "Transaction Successful";
+        Billing savedBilling = billingRepository.save(billing);
+
+        return BillingResponse.builder()
+                .amount(savedBilling.getAmount())
+                .createdAt(savedBilling.getCreatedAt())
+                .customerId(savedBilling.getCustomerId())
+                .status(savedBilling.getStatus())
+                .build();
     }
 }

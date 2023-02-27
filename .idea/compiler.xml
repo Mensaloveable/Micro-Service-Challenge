@@ -11,5 +11,8 @@
         <module name="billing-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="open-feign" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
