@@ -16,13 +16,12 @@ public class BillingServiceImpl implements BillingService {
 
     private final BillingRepository billingRepository;
     @Override
-    public String fundWallet(Long id, BigDecimal amount) {
+    public String fundWallet(BigDecimal amount) {
         Billing billing = Billing.builder()
                 .amount(amount)
                 .createdAt(LocalDate.now())
                 .status(Status.PENDING)
                 .modifiedAt(null)
-                .customerId(id)
                 .build();
 
         billingRepository.save(billing);

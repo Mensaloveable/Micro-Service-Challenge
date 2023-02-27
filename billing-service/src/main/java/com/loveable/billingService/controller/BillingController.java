@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 public class BillingController {
     private final BillingService billingService;
 
-    @PostMapping("/fund/{id}")
-    public String fund(@RequestBody BigDecimal amount, @PathVariable Long id){
-        return billingService.fundWallet(id, amount);
+    @PostMapping("/fund")
+    public String fund(@RequestBody BigDecimal amount){
+        return billingService.fundWallet(amount);
     }
 }
