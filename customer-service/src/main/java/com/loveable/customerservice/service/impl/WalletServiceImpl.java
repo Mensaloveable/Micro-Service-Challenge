@@ -24,13 +24,12 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public String fundWallet(BigDecimal amount) {
+    public BillingResponse fundWallet(BigDecimal amount) {
         User user = getLoggedInUser();
-        BillingResponse billingResponse = restTemplate.getForObject(
+        return restTemplate.getForObject(
                 "http:localhost:8081/api/v1/billing/{id}",
                 BillingResponse.class,
                 user.getId()
         );
-        return null;
     }
 }
