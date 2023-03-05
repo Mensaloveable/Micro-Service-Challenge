@@ -1,12 +1,9 @@
 package com.loveable.billingService.entity;
 
 import com.loveable.billingService.enums.Status;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -22,6 +19,7 @@ public class Billing {
     private Long id;
     private Long customerId;
     private BigDecimal amount;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private LocalDate createdAt;
     private LocalDate modifiedAt;

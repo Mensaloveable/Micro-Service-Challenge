@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.math.BigDecimal;
 
-@FeignClient("billing")
+@FeignClient("billing-service")
 public interface Feign {
     @PostMapping("/api/v1/billing/fund/{amount}")
     BillingResponse fund(/*@RequestBody  amount, */@PathVariable("amount") BigDecimal amount);

@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers(AUTH_WHITELIST)
+                .antMatchers(AUTH_WHITELIST)
                 .permitAll()
                 .anyRequest()
 //                .authenticated()

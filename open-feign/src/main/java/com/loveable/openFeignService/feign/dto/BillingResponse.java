@@ -14,6 +14,6 @@ import java.time.LocalDate;
 public class BillingResponse {
     private Long customerId;
     private BigDecimal amount;
-    private Status status;
+    private String status;
     private LocalDate createdAt;
 }

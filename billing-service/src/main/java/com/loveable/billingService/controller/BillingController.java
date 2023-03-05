@@ -1,6 +1,7 @@
 package com.loveable.billingService.controller;
 
 import com.loveable.billingService.service.BillingService;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class BillingController {
     private final BillingService billingService;
 
     @PostMapping("/fund/{amount}")
-    public String fund(/*@RequestBody BigDecimal amount, */@PathVariable("amount") String amountStr){
+    public BillingResponse fund(/*@RequestBody BigDecimal amount, */@PathVariable("amount") String amountStr){
         BigDecimal amount = new BigDecimal(amountStr);
         return billingService.fundWallet(amount);
     }

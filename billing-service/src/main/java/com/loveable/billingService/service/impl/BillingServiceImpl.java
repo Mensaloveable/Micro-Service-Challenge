@@ -4,6 +4,7 @@ import com.loveable.billingService.entity.Billing;
 import com.loveable.billingService.enums.Status;
 import com.loveable.billingService.repository.BillingRepository;
 import com.loveable.billingService.service.BillingService;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class BillingServiceImpl implements BillingService {
 
     private final BillingRepository billingRepository;
     @Override
-    public String fundWallet(BigDecimal amount) {
+    public BillingResponse fundWallet(BigDecimal amount) {
         Billing billing = Billing.builder()
                 .amount(amount)
                 .createdAt(LocalDate.now())
@@ -24,7 +25,12 @@ public class BillingServiceImpl implements BillingService {
                 .modifiedAt(null)
                 .build();
 
-        billingRepository.save(billing);
-        return "Transaction Successful";
+        Billing savedBilling = billingRepository.save(billing);
+        return BillingResponse.builder()
+                .amount(savedBilling.getAmount())
+                .createdAt(savedBilling.getCreatedAt())
+                .status(savedBilling.getStatus().name())
+                .customerId(savedBilling.getCustomerId())
+                .build();
     }
 }
