@@ -12,6 +12,7 @@
         <module>customer-service</module>
         <module>billing-service</module>
         <module>open-feign</module>
+        <module>eureka-server</module>
     </modules>
 
     <properties>
