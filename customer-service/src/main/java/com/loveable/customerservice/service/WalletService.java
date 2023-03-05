@@ -1,7 +1,9 @@
 package com.loveable.customerservice.service;
 
+import com.loveable.openFeign.feign.dto.BillingResponse;
+
 import java.math.BigDecimal;
 
 public interface WalletService {
-    public String fundWallet(BigDecimal amount);
+    public BillingResponse fundWallet(BigDecimal amount);
 }

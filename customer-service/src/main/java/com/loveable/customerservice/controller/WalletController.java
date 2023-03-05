@@ -1,6 +1,7 @@
 package com.loveable.customerservice.controller;
 
 import com.loveable.customerservice.service.WalletService;
+import com.loveable.openFeign.feign.dto.BillingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
