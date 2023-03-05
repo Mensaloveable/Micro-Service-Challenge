@@ -1,6 +1,6 @@
 package com.loveable.customerservice.service;
 
-import com.loveable.openFeign.feign.dto.BillingResponse;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 
 import java.math.BigDecimal;
 

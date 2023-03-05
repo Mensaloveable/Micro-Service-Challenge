@@ -1,6 +1,6 @@
-package com.loveable.openFeign.feign.dto;
+package com.loveable.openFeignService.feign.dto;
 
-import com.loveable.openFeign.feign.enums.Status;
+import com.loveable.openFeignService.feign.enums.Status;
 import lombok.*;
 
 import java.math.BigDecimal;

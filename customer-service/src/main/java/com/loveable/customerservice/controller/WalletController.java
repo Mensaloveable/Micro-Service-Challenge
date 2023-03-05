@@ -1,14 +1,11 @@
 package com.loveable.customerservice.controller;
 
 import com.loveable.customerservice.service.WalletService;
-import com.loveable.openFeign.feign.dto.BillingResponse;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -18,8 +15,9 @@ import java.math.BigDecimal;
 public class WalletController {
     private final WalletService walletService;
 
-    @PostMapping
-    public ResponseEntity<BillingResponse> fundWallet(@RequestBody BigDecimal amount){
+    @PostMapping("/{amount}")
+    public ResponseEntity<BillingResponse> fundWallet(@PathVariable("amount") String amountStr){
+        BigDecimal amount = new BigDecimal(amountStr);
         BillingResponse billingResponse = walletService.fundWallet(amount);
         return new ResponseEntity<>(billingResponse, HttpStatus.OK);
     }
