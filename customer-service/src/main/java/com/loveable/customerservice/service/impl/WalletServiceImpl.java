@@ -26,7 +26,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public BillingResponse fundWallet(BigDecimal amount) {
         User user = getLoggedInUser();
-        BillingResponse fund = feign.fund(amount);
+        BillingResponse fund = feign.fund(user.getId(), amount);
         user.setAccountBalance(user.getAccountBalance().add(amount));
         return fund;
     }

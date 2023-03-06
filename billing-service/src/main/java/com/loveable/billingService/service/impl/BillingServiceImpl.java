@@ -17,8 +17,9 @@ public class BillingServiceImpl implements BillingService {
 
     private final BillingRepository billingRepository;
     @Override
-    public BillingResponse fundWallet(BigDecimal amount) {
+    public BillingResponse fundWallet(Long id, BigDecimal amount) {
         Billing billing = Billing.builder()
+                .customerId(id)
                 .amount(amount)
                 .createdAt(LocalDate.now())
                 .status(Status.PENDING)
@@ -27,10 +28,12 @@ public class BillingServiceImpl implements BillingService {
 
         Billing savedBilling = billingRepository.save(billing);
         return BillingResponse.builder()
+                .customerId(savedBilling.getCustomerId())
                 .amount(savedBilling.getAmount())
                 .createdAt(savedBilling.getCreatedAt())
                 .status(savedBilling.getStatus().name())
                 .customerId(savedBilling.getCustomerId())
+                .modifiedAt(savedBilling.getModifiedAt())
                 .build();
     }
 }

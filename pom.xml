@@ -13,6 +13,7 @@
         <module>billing-service</module>
         <module>open-feign</module>
         <module>eureka-server</module>
+        <module>billing-worker</module>
     </modules>
 
     <properties>

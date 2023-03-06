@@ -9,6 +9,6 @@ import java.math.BigDecimal;
 
 @FeignClient("billing-service")
 public interface Feign {
-    @PostMapping("/api/v1/billing/fund/{amount}")
-    BillingResponse fund(/*@RequestBody  amount, */@PathVariable("amount") BigDecimal amount);
+    @PostMapping("/api/v1/billing/fund/{id}/{amount}")
+    BillingResponse fund(@PathVariable("id") Long id, @PathVariable("amount") BigDecimal amount);
 }

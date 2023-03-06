@@ -13,9 +13,10 @@ import java.math.BigDecimal;
 public class BillingController {
     private final BillingService billingService;
 
-    @PostMapping("/fund/{amount}")
-    public BillingResponse fund(/*@RequestBody BigDecimal amount, */@PathVariable("amount") String amountStr){
+    @PostMapping("/fund/{id}/{amount}")
+    public BillingResponse fund(@PathVariable("id") Long idStr, @PathVariable("amount") String amountStr){
         BigDecimal amount = new BigDecimal(amountStr);
-        return billingService.fundWallet(amount);
+        Long id = Long.valueOf(idStr);
+        return billingService.fundWallet(id, amount);
     }
 }

@@ -16,4 +16,5 @@ public class BillingResponse {
     private BigDecimal amount;
     private String status;
     private LocalDate createdAt;
+    private LocalDate modifiedAt;
 }
