@@ -1,4 +1,7 @@
 package com.loveable.billingworker.service;
 
-public class ProcessFund {
+import com.loveable.openFeignService.feign.dto.BillingResponse;
+
+public interface ProcessFund {
+    BillingResponse processFund(Long id);
 }
