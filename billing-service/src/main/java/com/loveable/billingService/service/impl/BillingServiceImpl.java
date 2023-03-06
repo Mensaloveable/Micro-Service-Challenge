@@ -4,6 +4,7 @@ import com.loveable.billingService.entity.Billing;
 import com.loveable.billingService.enums.Status;
 import com.loveable.billingService.repository.BillingRepository;
 import com.loveable.billingService.service.BillingService;
+import com.loveable.openFeignService.feign.BillingFeign;
 import com.loveable.openFeignService.feign.dto.BillingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 public class BillingServiceImpl implements BillingService {
 
     private final BillingRepository billingRepository;
+    private final BillingFeign billingFeign;
     @Override
     public BillingResponse fundWallet(Long id, BigDecimal amount) {
         Billing billing = Billing.builder()
@@ -26,14 +28,17 @@ public class BillingServiceImpl implements BillingService {
                 .modifiedAt(null)
                 .build();
 
-        Billing savedBilling = billingRepository.save(billing);
+        Billing flushedBilling = billingRepository.saveAndFlush(billing);
+
+        BillingResponse response = billingFeign.processFund(flushedBilling.getId());
+
         return BillingResponse.builder()
-                .customerId(savedBilling.getCustomerId())
-                .amount(savedBilling.getAmount())
-                .createdAt(savedBilling.getCreatedAt())
-                .status(savedBilling.getStatus().name())
-                .customerId(savedBilling.getCustomerId())
-                .modifiedAt(savedBilling.getModifiedAt())
+                .customerId(response.getCustomerId())
+                .amount(response.getAmount())
+                .createdAt(response.getCreatedAt())
+                .status(response.getStatus())
+                .customerId(response.getCustomerId())
+                .modifiedAt(response.getModifiedAt())
                 .build();
     }
 }
