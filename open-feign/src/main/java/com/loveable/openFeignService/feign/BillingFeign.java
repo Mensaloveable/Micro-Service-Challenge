@@ -1,12 +1,12 @@
 package com.loveable.openFeignService.feign;
 
-import com.loveable.openFeignService.feign.entity.Billing;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @FeignClient("billing-worker")
 public interface BillingFeign {
-    @PutMapping("/api/v1/process/{id}")
-    Billing processFund(@PathVariable("id") Long id);
+    @GetMapping("/api/v1/billing/{id}")
+    BillingResponse processFund(@PathVariable("id") Long id);
 }

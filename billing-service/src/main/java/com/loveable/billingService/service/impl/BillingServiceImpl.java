@@ -4,8 +4,8 @@ import com.loveable.billingService.repository.BillingRepository;
 import com.loveable.billingService.service.BillingService;
 import com.loveable.openFeignService.feign.BillingFeign;
 import com.loveable.openFeignService.feign.dto.BillingResponse;
-import com.loveable.openFeignService.feign.entity.Billing;
-import com.loveable.openFeignService.feign.enums.Status;
+import com.loveable.billingService.entity.Billing;
+import com.loveable.billingService.enums.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +28,7 @@ public class BillingServiceImpl implements BillingService {
                 .modifiedAt(null)
                 .build();
 
-        Billing flushedBilling = billingRepository.saveAndFlush(billing);
-
-        Billing response = billingFeign.processFund(flushedBilling.getId());
+        Billing response = billingRepository.save(billing);
 
         return BillingResponse.builder()
                 .customerId(response.getCustomerId())

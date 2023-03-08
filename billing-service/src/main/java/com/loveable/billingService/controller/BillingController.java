@@ -2,6 +2,7 @@ package com.loveable.billingService.controller;
 
 import com.loveable.billingService.service.BillingService;
 import com.loveable.openFeignService.feign.dto.BillingResponse;
+import com.loveable.billingService.entity.Billing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

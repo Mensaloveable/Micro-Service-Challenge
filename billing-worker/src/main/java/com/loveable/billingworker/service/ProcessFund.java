@@ -1,7 +1,7 @@
 package com.loveable.billingworker.service;
 
-import com.loveable.openFeignService.feign.entity.Billing;
+import com.loveable.openFeignService.feign.dto.BillingResponse;
 
 public interface ProcessFund {
-    Billing processFund(Long id) throws InterruptedException;
+    BillingResponse processFund(Long id) throws InterruptedException;
 }
