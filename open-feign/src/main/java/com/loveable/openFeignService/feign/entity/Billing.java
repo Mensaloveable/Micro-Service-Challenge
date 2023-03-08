@@ -1,6 +1,6 @@
-package com.loveable.billingService.entity;
+package com.loveable.openFeignService.feign.entity;
 
-import com.loveable.billingService.enums.Status;
+import com.loveable.openFeignService.feign.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
